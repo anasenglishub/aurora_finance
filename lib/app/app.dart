@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:aurora_finance/app/shared/utils/app_config.dart';
 import 'package:aurora_finance/app/view/pages/HomePage.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AuroraApp extends StatelessWidget {
   const AuroraApp({super.key});
@@ -14,7 +15,7 @@ class AuroraApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: AppConfig.primarySwatch[500]!),
         scaffoldBackgroundColor: ColorScheme.fromSeed(seedColor: AppConfig.neutralColor).surface,
-        fontFamily: AppConfig.bodyFont,
+        textTheme: GoogleFonts.montserratTextTheme(),
       ),
       title: 'Aurora Finance',
       home: const HomePage(),
