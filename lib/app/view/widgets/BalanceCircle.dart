@@ -39,13 +39,24 @@ class BalanceCircle extends StatelessWidget {
               textBaseline: TextBaseline.alphabetic,
               children: [
                 Text(
-                  "\R\$${totalBalance.toStringAsFixed(2)}",
+                  "R\$ ",
                   style: TextStyle(
-                    color: const Color(0xFF00E5FF),
-                    fontSize: 48,
+                    color: AppConfig.primarySwatch[500],
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    shadows: [Shadow(color: const Color(0xFF00E5FF).withValues(alpha: 0.5), blurRadius: 20)],
+                    shadows: [Shadow(color: AppConfig.primarySwatch[300]!.withValues(alpha: 0.5), blurRadius: 20)],
                     fontFamily: GoogleFonts.spaceGrotesk().fontFamily,
+                  ),
+                ),
+                Text(
+                  totalBalance.toStringAsFixed(2),
+                  style: TextStyle(
+                    color: AppConfig.primarySwatch[50],
+                    fontSize: 56,
+                    shadows: [Shadow(color: AppConfig.primarySwatch[50]!.withValues(alpha: 0.5), blurRadius: 20)],
+                    fontFamily: GoogleFonts.manrope(
+                      fontWeight: FontWeight.w800,
+                    ).fontFamily,
                   ),
                 ),
               ],
