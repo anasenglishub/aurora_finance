@@ -8,24 +8,8 @@ class Balance extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(25),
-        color: AppConfig.primarySwatch[50]!.withValues(alpha: 0.1),
-        boxShadow: [
-          BoxShadow(
-            color: AppConfig.primarySwatch[50]!.withValues(alpha: 0.1),
-            blurRadius: 5,
-            offset: Offset(0, 5),
-          ),
-        ],
-        border: Border.all(
-          color: AppConfig.primarySwatch[50]!.withValues(alpha: 0.3),
-          width: 1,
-        ),
-      ),
-      padding: const EdgeInsets.all(20),
-      child: Column(
+    return Column(
+        mainAxisSize: MainAxisSize.min,
         spacing: 30,
         children: [
           Text("LIQUID BALANCE", style: TextStyle(color: Colors.grey, fontSize: 16, fontWeight: FontWeight.bold, letterSpacing: 1.2, fontFamily: GoogleFonts.spaceGrotesk().fontFamily)),
@@ -34,12 +18,12 @@ class Balance extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(25),
-              color: AppConfig.neutralColor!.withValues(alpha: 0.1),
+              color: AppConfig.neutralColor.withValues(alpha: 0.1),
               border: Border.all(
                 color: AppConfig.primarySwatch[50]!.withValues(alpha: 0.2),
                 width: 1,
               ),
-            ),
+            ),  
             height: 50,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -73,7 +57,6 @@ class Balance extends StatelessWidget {
             ),
           ),
         ],
-      ),
     );
   }
 }

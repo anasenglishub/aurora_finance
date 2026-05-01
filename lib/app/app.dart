@@ -10,7 +10,7 @@ class AuroraApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        '/home': (context) => const HomePage(),
+        '/home': (context) => HomePage(),
       },
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: AppConfig.primarySwatch[500]!),
@@ -18,7 +18,7 @@ class AuroraApp extends StatelessWidget {
         textTheme: GoogleFonts.montserratTextTheme(),
       ),
       title: 'Aurora Finance',
-      home: const HomePage(),
+      home: HomePage(),
     );
   }
 }
