@@ -9,14 +9,14 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: AppConfig.neutralSwatch[500],
+        backgroundColor: AppConfig.backgroundColor,
         appBar: AppBar(
           title: Text(
-            'Ana\s Finance Hub',
+            'Ana\'s Finance Hub',
             style: TextStyle(
               color: Colors.white,
               fontSize: 25,
-              fontFamily: GoogleFonts.epilogue().fontFamily,
+              fontFamily: GoogleFonts.manrope().fontFamily,
               letterSpacing: 2,
             ),
           ),

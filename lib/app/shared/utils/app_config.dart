@@ -56,7 +56,7 @@ class AppConfig {
     <int, Color>{
       50: Color(0xFFEDEDED),
       100: Color(0xFFD9D9D9),
-      200: Color(0xFFBFBFBF),
+      200: Color(0xFFBFBFBF), 
       300: Color(0xFFA6A6A6),
       400: Color(0xFF8C8C8C),
       500: Color(0xFF333333),
@@ -66,6 +66,8 @@ class AppConfig {
       900: Color(0xFF000000),
     },
   );
+
+  static const Color backgroundColor = Color(0xFFFBF9F8);
 
   // Fonts
   // Google Font Fonts 

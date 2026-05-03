@@ -14,10 +14,10 @@ class AuroraApp extends StatelessWidget {
       },
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: AppConfig.primarySwatch[500]!),
-        scaffoldBackgroundColor: ColorScheme.fromSeed(seedColor: AppConfig.neutralColor).surface,
-        textTheme: GoogleFonts.montserratTextTheme(),
+        scaffoldBackgroundColor: AppConfig.backgroundColor,
+        textTheme: GoogleFonts.manropeTextTheme(),
       ),
-      title: 'Aurora Finance',
+      title: 'Ana\'s Finance Hub',
       home: HomePage(),
     );
   }
