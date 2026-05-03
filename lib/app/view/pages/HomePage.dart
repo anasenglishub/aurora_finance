@@ -1,29 +1,18 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:aurora_finance/app/view/widgets/ActionButtonts.dart';
 import 'package:aurora_finance/app/shared/utils/app_config.dart';
-import 'package:aurora_finance/app/view/widgets/Balance.dart';
-import 'package:aurora_finance/app/view/widgets/Card.dart';
-import 'package:aurora_finance/app/view/widgets/RecentPurchases.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
 
-  final List<Map<String, dynamic>> actionButtons = [
-    {'icon': Icons.swap_horiz, 'label': 'TRANSFER', 'iconColor': AppConfig.primarySwatch[300]},
-    {'icon': Icons.add, 'label': 'DEPOSIT', 'iconColor': AppConfig.secondarySwatch[300]},
-  ];
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: AppConfig.neutralColor,
+        backgroundColor: AppConfig.neutralSwatch[500],
         appBar: AppBar(
           title: Text(
-            'AURORA FINANCE',
+            'Ana\s Finance Hub',
             style: TextStyle(
               color: Colors.white,
               fontSize: 25,
@@ -32,7 +21,7 @@ class HomePage extends StatelessWidget {
             ),
           ),
           centerTitle: true,
-          backgroundColor: AppConfig.neutralColor,
+          backgroundColor: AppConfig.neutralSwatch[500],
           titleTextStyle: TextStyle(
             color: AppConfig.primarySwatch[300],
             fontSize: 25,
@@ -45,19 +34,7 @@ class HomePage extends StatelessWidget {
             child: Column(
               spacing: 20,
               children: [
-                CardWidget(
-                  withBlurPattern: true,
-                  blurColorLight: AppConfig.primarySwatch[300]!,
-                  blurColorDark: AppConfig.primarySwatch[500]!,
-                  child: Column(
-                    children: [
-                      Balance(),
-                    ],
-                  ),
-                ),
-                // Actions
-                ActionButtons(actionButtons: actionButtons),
-                RecentPurchases(),
+               
               ],
             ),
           ),
