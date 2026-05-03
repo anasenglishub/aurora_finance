@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:aurora_finance/app/shared/utils/app_config.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:aurora_finance/app/view/widgets/CustomAppbarWidget.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -10,24 +11,7 @@ class HomePage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppConfig.backgroundColor,
-        appBar: AppBar(
-          title: Text(
-            'Ana\'s Finance Hub',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 25,
-              fontFamily: GoogleFonts.manrope().fontFamily,
-              letterSpacing: 2,
-            ),
-          ),
-          centerTitle: true,
-          backgroundColor: AppConfig.neutralSwatch[500],
-          titleTextStyle: TextStyle(
-            color: AppConfig.primarySwatch[300],
-            fontSize: 25,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        appBar: CustomAppBarWidget(),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: SingleChildScrollView(
