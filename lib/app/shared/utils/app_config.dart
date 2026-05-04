@@ -5,8 +5,8 @@ class AppConfig {
   static const MaterialColor primarySwatch = MaterialColor(
     0xFF18A659,
     <int, Color>{
-      50: Color(0xFFFFFFFF),
-      100: Color(0xFFC3FFCE),
+      50: Color(0xFFE5F0EB),
+      100: Color(0xFFB7D7C5),
       200: Color(0xFF7EFBA4),
       300: Color(0xFF61DE8A),
       400: Color(0xFF41C271),

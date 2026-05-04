@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:aurora_finance/app/shared/utils/app_config.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:aurora_finance/app/view/widgets/CustomAppbarWidget.dart';
+import 'package:aurora_finance/app/view/widgets/UI/CustomAppbarWidget.dart';
+import 'package:aurora_finance/app/view/widgets/AvailableCardWidget.dart';
+import 'package:aurora_finance/app/view/widgets/SetExpectedIncomeWidget.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({super.key});
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,8 @@ class HomePage extends StatelessWidget {
             child: Column(
               spacing: 20,
               children: [
-               
+                AvailableCardWidget(),
+                SetExpectedIncomeWidget(),
               ],
             ),
           ),

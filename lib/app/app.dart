@@ -15,9 +15,35 @@ class AuroraApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: AppConfig.primarySwatch[500]!),
         scaffoldBackgroundColor: AppConfig.backgroundColor,
-        textTheme: GoogleFonts.manropeTextTheme(),
+        textTheme: TextTheme(
+          titleLarge: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.w700,
+            fontFamily: GoogleFonts.manrope().fontFamily,
+          ),
+          titleMedium: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+            fontFamily: GoogleFonts.manrope().fontFamily,
+          ),
+          titleSmall: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+            fontFamily: GoogleFonts.manrope().fontFamily,
+          ),
+          bodyMedium: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w400,
+            fontFamily: GoogleFonts.inter().fontFamily,
+          ),
+          bodySmall: TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w400,
+            fontFamily: GoogleFonts.inter().fontFamily,
+          ),
+        ),
       ),
-      title: 'Ana\'s Finance Hub',
+      title: 'Cash Flow',
       home: HomePage(),
     );
   }
