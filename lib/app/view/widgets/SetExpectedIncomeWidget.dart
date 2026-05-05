@@ -17,7 +17,9 @@ class SetExpectedIncomeWidget extends StatelessWidget {
           CustomButtonWidget(
             backgroundColor: AppConfig.primarySwatch[700]!,
             width: MediaQuery.of(context).size.width * 0.8,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, '/income-input');
+            },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

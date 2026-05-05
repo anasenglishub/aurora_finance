@@ -4,7 +4,11 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CustomAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
-  const CustomAppBarWidget({super.key});
+  final String title;
+  final IconData icon;
+  final VoidCallback? onTap;
+  
+  const CustomAppBarWidget({super.key, required this.title, required this.icon, this.onTap});
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -26,10 +30,17 @@ class CustomAppBarWidget extends StatelessWidget implements PreferredSizeWidget 
           ),
           child: Row(
             children: [
-              Icon(Icons.wallet, color: AppConfig.primarySwatch),
+              if (ModalRoute.of(context)?.isFirst == false) ...[
+                IconButton(
+                  icon: Icon(Icons.arrow_back, color: AppConfig.primarySwatch),
+                  onPressed: () => Navigator.pop(context),
+                ),
+              ] else ... [
+                Icon(Icons.wallet, color: AppConfig.primarySwatch),
+              ],
               SizedBox(width: 8),
               Text(
-                'Cash Flow',
+                title,
                 style: TextStyle(
                   fontFamily: GoogleFonts.manrope().fontFamily,
                   fontSize: 20,
@@ -38,8 +49,8 @@ class CustomAppBarWidget extends StatelessWidget implements PreferredSizeWidget 
               ),
               Spacer(),
               GestureDetector(
-                onTap: () {},
-                child: Icon(Icons.calendar_month, color: AppConfig.primarySwatch),
+                onTap: onTap,
+                child: Icon(icon, color: AppConfig.primarySwatch),
               ),
             ],
           ),
