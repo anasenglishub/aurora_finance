@@ -6,8 +6,9 @@ class CardWidget extends StatelessWidget {
   final Color? borderColor;
   final Color? upperBorderColor;
   final Color? backgroundColor;
+  final CrossAxisAlignment? crossAxisAlignment;
 
-  const CardWidget({super.key, required this.child, this.borderColor, this.upperBorderColor, this.backgroundColor});
+  const CardWidget({super.key, required this.child, this.borderColor, this.upperBorderColor, this.backgroundColor, this.crossAxisAlignment});
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +28,7 @@ class CardWidget extends StatelessWidget {
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: crossAxisAlignment ?? CrossAxisAlignment.start,
         children: [
           Container(
             height: 3,

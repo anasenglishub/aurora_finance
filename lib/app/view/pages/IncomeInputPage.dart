@@ -38,20 +38,7 @@ class IncomeInputPage extends StatelessWidget {
                 child: Column(
                   children: [
                     CardWidget(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Projection Month'.toUpperCase(),
-                            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const SizedBox(height: 8),
-                          // Add a date picker
-                          IncomeInputForm(),
-                        ],
-                      ),
+                      child: IncomeInputForm(),
                     ),
                   ],
                 ),

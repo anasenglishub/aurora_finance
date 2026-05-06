@@ -14,6 +14,7 @@ class AvailableCardWidget extends StatelessWidget {
 
     return CardWidget(
       upperBorderColor: AppConfig.primarySwatch[700],
+      crossAxisAlignment: CrossAxisAlignment.center,
       child: Column(
         spacing: 8,
         children: [

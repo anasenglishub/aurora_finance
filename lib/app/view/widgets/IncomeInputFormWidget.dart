@@ -35,9 +35,15 @@ class _IncomeInputFormState extends State<IncomeInputForm> {
     return Form(
       key: _formKey,
       child: Column(
-        spacing: 16,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Text(
+            'Projection Month'.toUpperCase(),
+            style: Theme.of(context).textTheme.titleSmall?.copyWith(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 8),
           MonthPickerInput(
             labelText: 'Projection Month',
             initialDate: _selectedDate,
@@ -49,18 +55,34 @@ class _IncomeInputFormState extends State<IncomeInputForm> {
               });
             },
           ),
+          const SizedBox(height: 16),
+          Text(
+            'Total Contracted Income'.toUpperCase(),
+            style: Theme.of(context).textTheme.titleSmall?.copyWith(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 8),
           CustomInputWidget(
-            labelText: 'Total Contracted Income',
             controller: _incomeController,
             hintText: '\$0.00',
             keyboardType: TextInputType.number,
           ),
+          const SizedBox(height: 16),
+          Text(
+            'Total Fixed Bills'.toUpperCase(),
+            style: Theme.of(context).textTheme.titleSmall?.copyWith(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 8),
           CustomInputWidget(
-            labelText: 'Total Fixed Bills',
             controller: _billsController,
             hintText: '\$0.00',
             keyboardType: TextInputType.number,
           ),
+
+          const SizedBox(height: 16),
           CustomButtonWidget(
             onPressed: () {              
               showDialog(

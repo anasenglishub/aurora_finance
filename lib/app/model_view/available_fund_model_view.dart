@@ -46,5 +46,4 @@ class AvailableFundModelView extends ChangeNotifier {
     _expectedIncome -= value;
     notifyListeners();
   }
-  
 }
