@@ -6,6 +6,7 @@ import 'package:aurora_finance/app/view/widgets/AvailableCardWidget.dart';
 import 'package:aurora_finance/app/view/widgets/SetExpectedIncomeWidget.dart';
 import 'package:aurora_finance/app/view/widgets/IndicatorsWidget.dart';
 import 'package:aurora_finance/app/model_view/available_fund_model_view.dart';
+import 'package:aurora_finance/app/view/widgets/UI/BottomNavigationBarWidget.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -61,6 +62,7 @@ class HomePage extends StatelessWidget {
           },
           child: Icon(Icons.add),
         ),
+        bottomNavigationBar: BottomNavigationBarWidget(),
       ),
     );
   }
