@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 class AvailableFundModelView extends ChangeNotifier {
+  static final AvailableFundModelView _instance = AvailableFundModelView._internal();
+  factory AvailableFundModelView() => _instance;
+  AvailableFundModelView._internal();
+  
   double _expectedIncome = 0.0;
   double _totalFixedBills = 0.0;
   

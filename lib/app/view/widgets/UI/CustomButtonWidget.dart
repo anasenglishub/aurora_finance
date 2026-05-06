@@ -3,14 +3,14 @@ import 'package:aurora_finance/app/shared/utils/app_config.dart';
 
 class CustomButtonWidget extends StatelessWidget {
   final Widget child;
-  final VoidCallback? onPressed;
+  final VoidCallback onPressed;
   final double? width;
   final Color? backgroundColor;
 
   const CustomButtonWidget({
     super.key,
     required this.child,
-    this.onPressed,
+    required this.onPressed,
     this.width,
     this.backgroundColor,
   });

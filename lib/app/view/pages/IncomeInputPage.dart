@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:aurora_finance/app/view/widgets/UI/CustomAppbarWidget.dart';
 import 'package:aurora_finance/app/view/widgets/UI/CardWidget.dart';
+import 'package:aurora_finance/app/view/widgets/IncomeInputFormWidget.dart';
 
 class IncomeInputPage extends StatelessWidget {
   const IncomeInputPage({super.key});
@@ -38,19 +39,17 @@ class IncomeInputPage extends StatelessWidget {
                   children: [
                     CardWidget(
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
                             'Projection Month'.toUpperCase(),
-                            style: Theme.of(context).textTheme.titleMedium,
+                            style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                           const SizedBox(height: 8),
                           // Add a date picker
-                          TextField(
-                            decoration: InputDecoration(
-                              hintText: 'Select month',
-                              border: OutlineInputBorder(),
-                            ),
-                          ),
+                          IncomeInputForm(),
                         ],
                       ),
                     ),
