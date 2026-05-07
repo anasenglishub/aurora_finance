@@ -5,7 +5,6 @@ import 'package:aurora_finance/app/view/widgets/UI/CustomAppbarWidget.dart';
 import 'package:aurora_finance/app/view/widgets/AvailableCardWidget.dart';
 import 'package:aurora_finance/app/view/widgets/SetExpectedIncomeWidget.dart';
 import 'package:aurora_finance/app/view/widgets/IndicatorsWidget.dart';
-import 'package:aurora_finance/app/model_view/available_fund_model_view.dart';
 import 'package:aurora_finance/app/view/widgets/UI/BottomNavigationBarWidget.dart';
 
 class HomePage extends StatelessWidget {
@@ -23,34 +22,26 @@ class HomePage extends StatelessWidget {
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: ListenableBuilder(  // ← Wrap content here
-            listenable: AvailableFundModelView(),
-            builder: (context, child) {
-              final viewModel = AvailableFundModelView();
-              
-              return SingleChildScrollView(
-                child: Column(
-                  spacing: 20,
-                  children: [
-                    CardWidget(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      child: Text(
-                        'Month',
-                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          fontWeight: FontWeight.w700,
-                          color: AppConfig.primarySwatch[700],
-                        ),
-                      ),
+          child: SingleChildScrollView(
+            child: Column(
+              spacing: 20,
+              children: [
+                CardWidget(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  child: Text(
+                    'Month',
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.w700,
+                      color: AppConfig.primarySwatch[700],
                     ),
-                    AvailableCardWidget(),
-                    if (viewModel.availableFund == 0)  // ← Now updates dynamically!
-                      SetExpectedIncomeWidget(),
-                    
-                    IndicatorsWidget(),
-                  ],
+                  ),
                 ),
-              );
-            },
+                AvailableCardWidget(),
+                SetExpectedIncomeWidget(),
+                
+                IndicatorsWidget(),
+              ],
+            ),
           ),
         ),
         floatingActionButton: FloatingActionButton(
