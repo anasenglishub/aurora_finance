@@ -3,7 +3,7 @@ import 'package:aurora_finance/app/view/widgets/UI/CardWidget.dart';
 import 'package:aurora_finance/app/shared/utils/app_config.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:aurora_finance/app/view/widgets/UI/CustomButtonWidget.dart';
-import 'package:aurora_finance/app/model_view/available_fund_model_view.dart';
+import 'package:aurora_finance/app/model_view/settings/available_fund_model_view.dart';
 
 class AvailableCardWidget extends StatelessWidget {
   AvailableCardWidget({super.key});

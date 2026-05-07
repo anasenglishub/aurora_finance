@@ -6,4 +6,5 @@ class TransactionsModelView extends ChangeNotifier {
   TransactionsModelView._internal();
   
   // Add your transaction-related state and methods here
+  // List<IncomeTransaction>
 }

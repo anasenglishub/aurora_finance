@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:aurora_finance/app/view/widgets/UI/MonthPicker.dart';
 import 'package:intl/intl.dart';
 import 'package:aurora_finance/app/view/widgets/UI/CustomInputWidget.dart';
-import 'package:aurora_finance/app/model_view/available_fund_model_view.dart';
+import 'package:aurora_finance/app/model_view/settings/available_fund_model_view.dart';
 
 class IncomeInputForm extends StatefulWidget {
   const IncomeInputForm({super.key});

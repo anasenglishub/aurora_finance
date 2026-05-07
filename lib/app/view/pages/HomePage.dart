@@ -38,7 +38,6 @@ class HomePage extends StatelessWidget {
                 ),
                 AvailableCardWidget(),
                 SetExpectedIncomeWidget(),
-                
                 IndicatorsWidget(),
               ],
             ),
