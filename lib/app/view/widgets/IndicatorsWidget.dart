@@ -19,7 +19,7 @@ class IndicatorsWidget extends StatelessWidget {
             final cashFlowIndicators = [
               {
                 'title': 'Income',
-                'value': 'R\$ ${AvailableFundModelView().availableFund.toStringAsFixed(2)}',
+                'value': 'R\$ ${AvailableFundModelView().expectedIncome.toStringAsFixed(2)}',
                 'color': Colors.green[700]
               },
               {
