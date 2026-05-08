@@ -1,0 +1,4 @@
+enum AllocationType {
+  budget,
+  ccReserve,
+}
