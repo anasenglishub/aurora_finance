@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:aurora_finance/app/entities/IncomeTransaction.dart';
+import 'package:aurora_finance/app/entities/income_transaction.dart';
 import 'package:aurora_finance/app/model_view/settings/available_fund_model_view.dart';
 import 'package:aurora_finance/app/shared/enums/allocation_types.dart';
 
