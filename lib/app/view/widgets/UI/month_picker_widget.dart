@@ -1,4 +1,4 @@
-import 'package:aurora_finance/app/view/widgets/UI/CustomInputWidget.dart';
+import 'package:aurora_finance/app/view/widgets/UI/custom_input_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:aurora_finance/app/shared/utils/app_config.dart';
 import 'package:intl/intl.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:aurora_finance/app/view/widgets/UI/CustomAppbarWidget.dart';
-import 'package:aurora_finance/app/view/widgets/UI/CardWidget.dart';
-import 'package:aurora_finance/app/view/widgets/IncomeInputFormWidget.dart';
+import 'package:aurora_finance/app/view/widgets/UI/custom_app_bar_widget.dart';
+import 'package:aurora_finance/app/view/widgets/UI/card_widget.dart';
+import 'package:aurora_finance/app/view/widgets/income_input_widget.dart';
 
 class IncomeInputPage extends StatelessWidget {
   const IncomeInputPage({super.key});

@@ -1,8 +1,8 @@
-import 'package:aurora_finance/app/view/widgets/UI/CustomButtonWidget.dart';
+import 'package:aurora_finance/app/view/widgets/UI/custom_button_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:aurora_finance/app/view/widgets/UI/MonthPicker.dart';
+import 'package:aurora_finance/app/view/widgets/UI/month_picker_widget.dart';
 import 'package:intl/intl.dart';
-import 'package:aurora_finance/app/view/widgets/UI/CustomInputWidget.dart';
+import 'package:aurora_finance/app/view/widgets/UI/custom_input_widget.dart';
 import 'package:aurora_finance/app/model_view/settings/available_fund_model_view.dart';
 
 class IncomeInputForm extends StatefulWidget {

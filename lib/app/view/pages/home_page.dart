@@ -1,11 +1,11 @@
-import 'package:aurora_finance/app/view/widgets/UI/CardWidget.dart';
+import 'package:aurora_finance/app/view/widgets/UI/card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:aurora_finance/app/shared/utils/app_config.dart';
-import 'package:aurora_finance/app/view/widgets/UI/CustomAppbarWidget.dart';
-import 'package:aurora_finance/app/view/widgets/AvailableCardWidget.dart';
-import 'package:aurora_finance/app/view/widgets/SetExpectedIncomeWidget.dart';
-import 'package:aurora_finance/app/view/widgets/IndicatorsWidget.dart';
-import 'package:aurora_finance/app/view/widgets/UI/BottomNavigationBarWidget.dart';
+import 'package:aurora_finance/app/view/widgets/UI/custom_app_bar_widget.dart';
+import 'package:aurora_finance/app/view/widgets/available_card_widget.dart';
+import 'package:aurora_finance/app/view/widgets/set_expected_income_widget.dart';
+import 'package:aurora_finance/app/view/widgets/indicators_widget.dart';
+import 'package:aurora_finance/app/view/widgets/UI/bottom_navigation_bar.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -48,7 +48,7 @@ class HomePage extends StatelessWidget {
           backgroundColor: AppConfig.primarySwatch[500],
           foregroundColor: Colors.white,
           onPressed: () {
-            // Add your action here
+            Navigator.pushNamed(context, '/new-transaction');
           },
           child: Icon(Icons.add),
         ),

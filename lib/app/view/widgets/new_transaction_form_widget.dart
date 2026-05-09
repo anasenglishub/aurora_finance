@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:aurora_finance/app/shared/enums/transaction_categories.dart';
-import 'package:aurora_finance/app/view/widgets/UI/CustomDropdownWidget.dart';
+import 'package:aurora_finance/app/view/widgets/UI/custom_dropdown_widget.dart';
   
 class NewTransactionFormWidget extends StatefulWidget {
   const NewTransactionFormWidget({super.key});
