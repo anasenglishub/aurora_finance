@@ -1,6 +1,7 @@
+import 'package:aurora_finance/app/shared/utils/app_config.dart';
 import 'package:aurora_finance/app/view/widgets/UI/custom_button_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:aurora_finance/app/view/widgets/UI/month_picker_widget.dart';
+import 'package:aurora_finance/app/view/widgets/UI/date_picker_widget.dart';
 import 'package:intl/intl.dart';
 import 'package:aurora_finance/app/view/widgets/UI/custom_input_widget.dart';
 import 'package:aurora_finance/app/model_view/settings/available_fund_model_view.dart';
@@ -22,11 +23,58 @@ class _IncomeInputFormState extends State<IncomeInputForm> {
   final _billsController = TextEditingController();
   final AvailableFundModelView _availableFundModelView = AvailableFundModelView();
 
+  // Methods
+  Future<dynamic> _optionDialog(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('You are saving your income'),
+        content: Text('You have set your income to R\$${_incomeController.text}  and your fixed bills to R\$${_billsController.text}. Is that correct?'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+              _monthController.text = '';
+              _incomeController.text = '';
+              _billsController.text = '';
+            },
+            child: Text('No'),
+          ),
+          TextButton(
+            onPressed: () {
+              _availableFundModelView.setExpectedIncome(double.parse(_incomeController.text));
+              _availableFundModelView.setTotalFixedBills(double.parse(_billsController.text));
+              Navigator.pop(context);
+              Navigator.pop(context);
+            },
+            child: Text('Yes'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  bool get _isDisabled => _monthController.text.isEmpty || _incomeController.text.isEmpty || _billsController.text.isEmpty;
+  late final _isDisabledNotifier = ValueNotifier(_isDisabled);
+
+  @override
+  void initState() {
+    super.initState();
+    // Add listeners to update the notifier
+    void updateDisabled() {
+      _isDisabledNotifier.value = _isDisabled;
+    }
+    _monthController.addListener(updateDisabled);
+    _incomeController.addListener(updateDisabled);
+    _billsController.addListener(updateDisabled);
+  }
+  
   @override
   void dispose() {
     _monthController.dispose();
     _incomeController.dispose();
     _billsController.dispose();
+    _isDisabledNotifier.dispose();  // ← Don't forget!
     super.dispose();
   }
 
@@ -37,13 +85,6 @@ class _IncomeInputFormState extends State<IncomeInputForm> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Projection Month'.toUpperCase(),
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 8),
           MonthPickerInput(
             labelText: 'Projection Month',
             initialDate: _selectedDate,
@@ -83,34 +124,21 @@ class _IncomeInputFormState extends State<IncomeInputForm> {
           ),
 
           const SizedBox(height: 16),
-          CustomButtonWidget(
-            onPressed: () {              
-              showDialog(
-                context: context,
-                builder: (context) => AlertDialog(
-                  title: Text('You are saving your income'),
-                  content: Text('You have set your income to R\$${_incomeController.text}  and your fixed bills to R\$${_billsController.text}. Is that correct?'),
-                  actions: [
-                    TextButton(
-                      onPressed: () {
-                        _availableFundModelView.setExpectedIncome(double.parse(_incomeController.text));
-                        _availableFundModelView.setTotalFixedBills(double.parse(_billsController.text));
-                        Navigator.pop(context);
-                        Navigator.pop(context);
-                      },
-                      child: Text('Yes'),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: Text('No'),
-                    ),
-                  ],
-                ),
-              );
-            },
-            child: Text('Save Income Projection'),
+          Center(
+            child: ValueListenableBuilder(
+              valueListenable: _isDisabledNotifier,
+              builder: (context, value, child) {
+                  return CustomButtonWidget(
+                  backgroundColor: AppConfig.primarySwatch[400],
+                  width: double.infinity,
+                  onPressed: () {              
+                    _optionDialog(context);
+                  },
+                  isDisabled: _isDisabled,
+                  child: Text('Save Income Projection'),
+                );
+              }
+            ),
           ),
         ],
       ),
