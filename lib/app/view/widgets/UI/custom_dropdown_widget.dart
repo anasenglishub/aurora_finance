@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:aurora_finance/app/shared/utils/app_config.dart';
 
 class CustomDropdownWidget extends StatelessWidget {
-  final Function(String?) onChanged;
+  final ValueChanged<String?> onChanged;
   final String initialValue;
   final List<String> items;
   final String label;
@@ -27,25 +27,29 @@ class CustomDropdownWidget extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 8),
-        DropdownButtonFormField<String>(
-          initialValue: initialValue,
-          icon: Icon(Icons.keyboard_arrow_down),
-          dropdownColor: AppConfig.backgroundColor,
-          isDense: true,
-          decoration: InputDecoration(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
+        Container(
+          color: Colors.white,
+          child: DropdownButtonFormField<String>(
+            initialValue: initialValue,
+            icon: Icon(Icons.keyboard_arrow_down),
+            dropdownColor: AppConfig.backgroundColor,
+            isDense: true,
+            decoration: InputDecoration(
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(color: AppConfig.neutralSwatch[200]!),
+              ),
             ),
+            items: items.map((item) {
+              return DropdownMenuItem(
+                value: item,
+                child: Text(item),
+              );
+            }).toList(),
+            onChanged: (value) {
+              onChanged(value);
+            },
           ),
-          items: items.map((item) {
-            return DropdownMenuItem(
-              value: item,
-              child: Text(item),
-            );
-          }).toList(),
-          onChanged: (value) {
-            onChanged(value);
-          },
         ),
       ],
     );

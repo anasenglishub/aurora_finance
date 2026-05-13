@@ -2,23 +2,28 @@ import 'package:aurora_finance/app/view/widgets/UI/custom_input_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:aurora_finance/app/shared/utils/app_config.dart';
 import 'package:intl/intl.dart';
+import 'package:aurora_finance/app/shared/enums/date_picker_format.dart';
 
 class MonthPickerInput extends StatefulWidget {
   final String? labelText;
+  final String? hintText;
   final DateTime? initialDate;
   final ValueChanged<DateTime>? onDateSelected;
   final DateTime? firstDate;
   final DateTime? lastDate;
   final TextEditingController? controller;  // ← NEW: Optional external controller
+  final DatePickerFormat format;  // ← NEW: Format for the date picker
 
   const MonthPickerInput({
     super.key,
     this.labelText,
+    this.hintText,
     this.initialDate,
     this.onDateSelected,
     this.firstDate,
     this.lastDate,
     this.controller,  // ← NEW
+    this.format = DatePickerFormat.monthYear,  // ← NEW
   });
 
   @override
@@ -40,13 +45,13 @@ class _MonthPickerInputState extends State<MonthPickerInput> {
       _effectiveController = widget.controller!;
       // Set initial text on external controller
       if (_selectedDate != null && widget.controller!.text.isEmpty) {
-        widget.controller!.text = DateFormat('MMMM yyyy').format(_selectedDate!);
+        widget.controller!.text = DateFormat(widget.format == DatePickerFormat.fullDate ? 'dd/MM/yyyy' : 'MMMM yyyy').format(_selectedDate!);
       }
     } else {
       _internalController = TextEditingController(
-        text: _selectedDate != null
-            ? DateFormat('MMMM yyyy').format(_selectedDate!)
-            : '',
+        text: _selectedDate != null ? 
+        DateFormat(widget.format == DatePickerFormat.fullDate ? 'dd/MM/yyyy' : 'MMMM yyyy').format(_selectedDate!) : 
+        '',
       );
       _effectiveController = _internalController!;
     }
@@ -66,7 +71,9 @@ class _MonthPickerInputState extends State<MonthPickerInput> {
       initialDate: _selectedDate ?? now,
       firstDate: widget.firstDate ?? DateTime(now.year - 5),
       lastDate: widget.lastDate ?? DateTime(now.year + 5),
-      initialDatePickerMode: DatePickerMode.year,
+      initialDatePickerMode: widget.format == DatePickerFormat.fullDate 
+        ? DatePickerMode.day 
+        : DatePickerMode.year,
       builder: (context, child) {
         return Theme(
           data: Theme.of(context).copyWith(
@@ -84,8 +91,10 @@ class _MonthPickerInputState extends State<MonthPickerInput> {
 
     if (picked != null) {
       setState(() {
-        _selectedDate = DateTime(picked.year, picked.month);
-        _effectiveController.text = DateFormat('MMMM yyyy').format(_selectedDate!);
+        _selectedDate = widget.format == DatePickerFormat.fullDate 
+            ? picked 
+            : DateTime(picked.year, picked.month);
+        _effectiveController.text = DateFormat(widget.format == DatePickerFormat.fullDate ? 'dd/MM/yyyy' : 'MMMM yyyy').format(picked);
       });
       widget.onDateSelected?.call(_selectedDate!);
     }
@@ -106,6 +115,7 @@ class _MonthPickerInputState extends State<MonthPickerInput> {
     if (input.isEmpty) return null;
 
     final formats = [
+      DateFormat('dd/MM/yyyy'),
       DateFormat('MMMM yyyy'),
       DateFormat('MMM yyyy'),
       DateFormat('MM/yyyy'),
@@ -141,9 +151,14 @@ class _MonthPickerInputState extends State<MonthPickerInput> {
 
   @override
   Widget build(BuildContext context) {
+    final hintText = widget.format == DatePickerFormat.monthYear 
+        ? 'e.g., January 2025' 
+        : 'e.g., 10/01/2025';
+
     return CustomInputWidget(
       controller: _effectiveController,  // ← Use effective controller
-      hintText: widget.labelText ?? 'e.g., January 2025',
+      hintText: widget.hintText ?? hintText,
+      labelText: widget.labelText,
       onTextChanged: _onTextChanged,
       suffixIcon: Container(
         margin: const EdgeInsets.only(right: 8),

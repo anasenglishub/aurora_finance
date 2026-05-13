@@ -6,6 +6,7 @@ class CustomButtonWidget extends StatelessWidget {
   final VoidCallback onPressed;
   final double? width;
   final Color? backgroundColor;
+  final bool isDisabled;
 
   const CustomButtonWidget({
     super.key,
@@ -13,21 +14,26 @@ class CustomButtonWidget extends StatelessWidget {
     required this.onPressed,
     this.width,
     this.backgroundColor,
+    this.isDisabled = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    return FilledButton(
-      onPressed: onPressed,
-      style: FilledButton.styleFrom(
-        backgroundColor: backgroundColor ?? AppConfig.primarySwatch[50]!,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
+    return SizedBox(
+      width: width ?? MediaQuery.of(context).size.width * 0.5,
+      child: FilledButton(
+        onPressed: isDisabled ? null : onPressed, 
+        style: FilledButton.styleFrom(
+          backgroundColor: backgroundColor ?? AppConfig.primarySwatch[50]!,
+          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          disabledBackgroundColor: Colors.grey[300],
         ),
-      ),
-      child: SizedBox(
-        width: width ?? MediaQuery.of(context).size.width * 0.4,
-        child: child,
+        child: SizedBox(
+          child: Center(child: child),
+        ),
       ),
     );
   }
