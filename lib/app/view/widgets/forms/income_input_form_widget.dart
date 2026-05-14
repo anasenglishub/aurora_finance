@@ -5,6 +5,7 @@ import 'package:aurora_finance/app/view/widgets/UI/date_picker_widget.dart';
 import 'package:intl/intl.dart';
 import 'package:aurora_finance/app/view/widgets/UI/custom_input_widget.dart';
 import 'package:aurora_finance/app/model_view/settings/available_fund_model_view.dart';
+import 'package:aurora_finance/app/shared/utils/dialog_utils.dart';
 
 class IncomeInputForm extends StatefulWidget {
   const IncomeInputForm({super.key});
@@ -25,32 +26,12 @@ class _IncomeInputFormState extends State<IncomeInputForm> {
 
   // Methods
   Future<dynamic> _optionDialog(BuildContext context) {
-    return showDialog(
+    return DialogUtils.confirm(
       context: context,
-      builder: (context) => AlertDialog(
-        title: Text('You are saving your income'),
-        content: Text('You have set your income to R\$${_incomeController.text}  and your fixed bills to R\$${_billsController.text}. Is that correct?'),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-              _monthController.text = '';
-              _incomeController.text = '';
-              _billsController.text = '';
-            },
-            child: Text('No'),
-          ),
-          TextButton(
-            onPressed: () {
-              _availableFundModelView.setExpectedIncome(double.parse(_incomeController.text));
-              _availableFundModelView.setTotalFixedBills(double.parse(_billsController.text));
-              Navigator.pop(context);
-              Navigator.pop(context);
-            },
-            child: Text('Yes'),
-          ),
-        ],
-      ),
+      title: 'You are saving your income',
+      message: 'You have set your income to R\$${_incomeController.text}  and your fixed bills to R\$${_billsController.text}. Is that correct?',
+      confirmLabel: 'Yes',
+      cancelLabel: 'No',
     );
   }
 
@@ -131,8 +112,13 @@ class _IncomeInputFormState extends State<IncomeInputForm> {
                   return CustomButtonWidget(
                   backgroundColor: AppConfig.primarySwatch[400],
                   width: double.infinity,
-                  onPressed: () {              
-                    _optionDialog(context);
+                  onPressed: () async {              
+                    bool sendInfo = await _optionDialog(context);
+                    if (sendInfo && mounted) {
+                      _availableFundModelView.setExpectedIncome(double.parse(_incomeController.text));
+                      _availableFundModelView.setTotalFixedBills(double.parse(_billsController.text));
+                      Navigator.pop(context);
+                    }
                   },
                   isDisabled: _isDisabled,
                   child: Text('Save Income Projection'),
