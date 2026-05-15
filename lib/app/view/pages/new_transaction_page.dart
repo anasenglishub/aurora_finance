@@ -1,4 +1,4 @@
-import 'package:aurora_finance/app/view/widgets/new_transaction_form_widget.dart';
+import 'package:aurora_finance/app/view/widgets/forms/new_transaction_form_widget.dart';
 import 'package:aurora_finance/app/view/widgets/UI/custom_app_bar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:aurora_finance/app/shared/utils/app_config.dart';

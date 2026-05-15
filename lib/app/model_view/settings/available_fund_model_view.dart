@@ -7,10 +7,11 @@ class AvailableFundModelView extends ChangeNotifier {
   
   double _expectedIncome = 0.0;
   double _totalFixedBills = 0.0;
+  double _availableFund = 0.0;
   
   double get expectedIncome => _expectedIncome;
   double get totalFixedBills => _totalFixedBills;
-  double get availableFund => _expectedIncome - _totalFixedBills;
+  double get availableFund => _availableFund;
   
   void setExpectedIncome(double value) {
     _expectedIncome = value;
@@ -38,12 +39,12 @@ class AvailableFundModelView extends ChangeNotifier {
   }
 
   void addToAvailableFund(double value) {
-    _expectedIncome += value;
+    _availableFund += value;
     notifyListeners();
   }
 
   void subtractFromAvailableFund(double value) {
-    _expectedIncome -= value;
+    _availableFund -= value;
     notifyListeners();
   }
 }
