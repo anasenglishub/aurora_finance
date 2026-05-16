@@ -22,8 +22,7 @@ class CustomAppBarWidget extends StatelessWidget implements PreferredSizeWidget 
           statusBarBrightness: Brightness.light,
         ),
         child: Container(
-          height: MediaQuery.of(context).size.height * 0.2,
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          padding: EdgeInsets.fromLTRB(16, kToolbarHeight, 16, 8),
           decoration: BoxDecoration(
             color: Colors.white,
             border: Border(bottom: BorderSide(color: Colors.grey[300]!)),
@@ -32,6 +31,7 @@ class CustomAppBarWidget extends StatelessWidget implements PreferredSizeWidget 
             children: [
               if (ModalRoute.of(context)?.isFirst == false) ...[
                 IconButton(
+                  iconSize: MediaQuery.of(context).size.width * 0.08,
                   icon: Icon(Icons.arrow_back, color: AppConfig.primarySwatch),
                   onPressed: () => Navigator.pop(context),
                 ),

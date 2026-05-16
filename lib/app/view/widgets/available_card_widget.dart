@@ -39,7 +39,9 @@ class AvailableCardWidget extends StatelessWidget {
               ),
       
               CustomButtonWidget(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/financial-breakdown');
+                },
                 backgroundColor: AppConfig.primarySwatch[50],
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,

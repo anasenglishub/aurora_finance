@@ -8,19 +8,17 @@ class NewTransactionPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: AppConfig.backgroundColor,
-        appBar: CustomAppBarWidget(
-          title: 'New Transaction',
-          icon: Icons.calendar_month,
-          onTap: () {},
-        ),
-        body: Column(
-          children: [
-            Expanded(child: NewTransactionFormWidget()),
-          ],
-        ),
+    return Scaffold(
+      backgroundColor: AppConfig.backgroundColor,
+      appBar: CustomAppBarWidget(
+        title: 'New Transaction',
+        icon: Icons.calendar_month,
+        onTap: () {},
+      ),
+      body: Column(
+        children: [
+          Expanded(child: NewTransactionFormWidget()),
+        ],
       ),
     );
   }

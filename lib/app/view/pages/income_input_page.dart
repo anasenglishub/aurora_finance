@@ -8,43 +8,41 @@ class IncomeInputPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: CustomAppBarWidget(
-          title: 'Income Input',
-          icon: Icons.more_vert,
-          onTap: () {},
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Montlhy Projection',
-                style: Theme.of(context).textTheme.titleLarge,
+    return Scaffold(
+      appBar: CustomAppBarWidget(
+        title: 'Income Input',
+        icon: Icons.more_vert,
+        onTap: () {},
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Montlhy Projection',
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'Log contracted retainers and expected extra income for accurate cash flow forecasting.',
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+            const SizedBox(height: 16),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
               ),
-              const SizedBox(height: 8),
-              Text(
-                'Log contracted retainers and expected extra income for accurate cash flow forecasting.',
-                style: Theme.of(context).textTheme.bodyMedium,
+              child: Column(
+                children: [
+                  CardWidget(
+                    child: IncomeInputForm(),
+                  ),
+                ],
               ),
-              const SizedBox(height: 16),
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Column(
-                  children: [
-                    CardWidget(
-                      child: IncomeInputForm(),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

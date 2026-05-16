@@ -12,48 +12,46 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {    
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: AppConfig.backgroundColor,
-        appBar: CustomAppBarWidget(
-          title: 'Home',
-          icon: Icons.wallet,
-          onTap: () {},
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: SingleChildScrollView(
-            child: Column(
-              spacing: 20,
-              children: [
-                CardWidget(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  child: Text(
-                    'Month',
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.w700,
-                      color: AppConfig.primarySwatch[700],
-                    ),
+    return Scaffold(
+      backgroundColor: AppConfig.backgroundColor,
+      appBar: CustomAppBarWidget(
+        title: 'Home',
+        icon: Icons.wallet,
+        onTap: () {},
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: SingleChildScrollView(
+          child: Column(
+            spacing: 20,
+            children: [
+              CardWidget(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                child: Text(
+                  'Month',
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    fontWeight: FontWeight.w700,
+                    color: AppConfig.primarySwatch[700],
                   ),
                 ),
-                AvailableCardWidget(),
-                SetExpectedIncomeWidget(),
-                IndicatorsWidget(),
-              ],
-            ),
+              ),
+              AvailableCardWidget(),
+              SetExpectedIncomeWidget(),
+              IndicatorsWidget(),
+            ],
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          elevation: 0,
-          backgroundColor: AppConfig.primarySwatch[500],
-          foregroundColor: Colors.white,
-          onPressed: () {
-            Navigator.pushNamed(context, '/new-transaction');
-          },
-          child: Icon(Icons.add),
-        ),
-        bottomNavigationBar: BottomNavigationBarWidget(),
       ),
+      floatingActionButton: FloatingActionButton(
+        elevation: 0,
+        backgroundColor: AppConfig.primarySwatch[500],
+        foregroundColor: Colors.white,
+        onPressed: () {
+          Navigator.pushNamed(context, '/new-transaction');
+        },
+        child: Icon(Icons.add),
+      ),
+      bottomNavigationBar: BottomNavigationBarWidget(),
     );
   }
 }
