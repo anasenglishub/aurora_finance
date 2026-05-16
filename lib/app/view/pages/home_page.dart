@@ -6,6 +6,7 @@ import 'package:aurora_finance/app/view/widgets/available_card_widget.dart';
 import 'package:aurora_finance/app/view/widgets/set_expected_income_widget.dart';
 import 'package:aurora_finance/app/view/widgets/indicators_widget.dart';
 import 'package:aurora_finance/app/view/widgets/UI/bottom_navigation_bar.dart';
+import 'package:aurora_finance/app/model_view/settings/available_fund_model_view.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -25,15 +26,20 @@ class HomePage extends StatelessWidget {
           child: Column(
             spacing: 20,
             children: [
-              CardWidget(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                child: Text(
-                  'Month',
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    fontWeight: FontWeight.w700,
-                    color: AppConfig.primarySwatch[700],
-                  ),
-                ),
+              ListenableBuilder(
+                listenable: AvailableFundModelView(),
+                builder: (context, child) {
+                  return CardWidget(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    child: Text(
+                      AvailableFundModelView().currentMonth,
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        fontWeight: FontWeight.w700,
+                        color: AppConfig.primarySwatch[700],
+                      ),
+                    ),
+                );
+                }
               ),
               AvailableCardWidget(),
               SetExpectedIncomeWidget(),

@@ -118,6 +118,7 @@ class _IncomeInputFormState extends State<IncomeInputForm> {
                       _availableFundModelView.setExpectedIncome(double.parse(_incomeController.text));
                       _availableFundModelView.setTotalFixedBills(double.parse(_billsController.text));
                       _availableFundModelView.addToAvailableFund(double.parse(_incomeController.text) - double.parse(_billsController.text));
+                      _availableFundModelView.setCurrentMonth(_monthController.text);
                       if (mounted) {
                         Navigator.pop(context);
                       }

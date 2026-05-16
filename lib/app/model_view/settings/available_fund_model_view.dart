@@ -8,10 +8,12 @@ class AvailableFundModelView extends ChangeNotifier {
   double _expectedIncome = 0.0;
   double _totalFixedBills = 0.0;
   double _availableFund = 0.0;
+  String _currentMonth = '';
   
   double get expectedIncome => _expectedIncome;
   double get totalFixedBills => _totalFixedBills;
   double get availableFund => _availableFund;
+  String get currentMonth => _currentMonth;
   
   void setExpectedIncome(double value) {
     _expectedIncome = value;
@@ -45,6 +47,11 @@ class AvailableFundModelView extends ChangeNotifier {
 
   void subtractFromAvailableFund(double value) {
     _availableFund -= value;
+    notifyListeners();
+  }
+  
+  void setCurrentMonth(String value) {
+    _currentMonth = value;
     notifyListeners();
   }
 }
