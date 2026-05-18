@@ -8,7 +8,7 @@ class AvailableFundModelView extends ChangeNotifier {
   double _expectedIncome = 0.0;
   double _totalFixedBills = 0.0;
   double _availableFund = 0.0;
-  String _currentMonth = '';
+  String _currentMonth = 'Current Month';
   
   double get expectedIncome => _expectedIncome;
   double get totalFixedBills => _totalFixedBills;
