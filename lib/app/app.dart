@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:aurora_finance/app/shared/utils/app_config.dart';
+import 'package:aurora_finance/app/view/pages/financial_breakdown.dart';
 import 'package:aurora_finance/app/view/pages/home_page.dart';
 import 'package:aurora_finance/app/view/pages/income_input_page.dart';
 import 'package:aurora_finance/app/view/pages/new_transaction_page.dart';
+import 'package:aurora_finance/app/view/pages/settings_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AuroraApp extends StatelessWidget {
@@ -15,6 +17,8 @@ class AuroraApp extends StatelessWidget {
         '/home': (context) => HomePage(),
         '/income-input': (context) => IncomeInputPage(),
         '/new-transaction': (context) => NewTransactionPage(),
+        '/financial-breakdown': (context) => FinancialBreakdownPage(),
+        '/settings': (context) => SettingsPage(),
       },
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: AppConfig.primarySwatch[500]!),

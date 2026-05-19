@@ -1,3 +1,4 @@
+import 'package:aurora_finance/app/model_view/transactions/transactions_model_view.dart';
 import 'package:flutter/material.dart';
 
 class AvailableFundModelView extends ChangeNotifier {
@@ -14,6 +15,7 @@ class AvailableFundModelView extends ChangeNotifier {
   double get totalFixedBills => _totalFixedBills;
   double get availableFund => _availableFund;
   String get currentMonth => _currentMonth;
+  double get extraIncome => TransactionsModelView().variableIncome;
   
   void setExpectedIncome(double value) {
     _expectedIncome = value;
