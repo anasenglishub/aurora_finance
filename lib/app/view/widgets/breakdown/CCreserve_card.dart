@@ -59,7 +59,7 @@ class CCreserveCard extends StatelessWidget {
             LinearProgressIndicator(
               value: percentage,
               backgroundColor: Colors.grey[300],
-              valueColor: AlwaysStoppedAnimation<Color>(AppConfig.primarySwatch!),
+              valueColor: AlwaysStoppedAnimation<Color>(AppConfig.primarySwatch),
               borderRadius: BorderRadius.circular(4),
               minHeight: 8,
             ),
