@@ -4,10 +4,11 @@ import 'package:aurora_finance/app/entities/transaction.dart';
 import 'package:aurora_finance/app/model_view/settings/available_fund_model_view.dart';
 
 class TransactionsModelView extends ChangeNotifier {
-  static final TransactionsModelView _instance = TransactionsModelView._internal();
+  static final TransactionsModelView _instance =
+      TransactionsModelView._internal();
   factory TransactionsModelView() => _instance;
   TransactionsModelView._internal();
-  
+
   // Add your transaction-related state and methods here
   double _variableIncome = 0.0;
   double _ccReserve = 0.0;
@@ -23,6 +24,7 @@ class TransactionsModelView extends ChangeNotifier {
 
   double get variableIncome => _variableIncome;
   double get ccReserve => _ccReserve;
+  List<Transaction> get expenseTransactions => _expenseTransactions;
 
   void addIncomeTransaction(Transaction transaction) {
     _incomeTransactions.add(
@@ -43,7 +45,10 @@ class TransactionsModelView extends ChangeNotifier {
     final index = _incomeTransactions.indexOf(transaction);
     if (index == -1 || transaction.allocatedToBudget) return;
     if (_ccReserveTransactions.any((t) => t == transaction)) {
-      DialogUtils.showError(context: context, message: 'This transaction is already in the CC Reserve');
+      DialogUtils.showError(
+        context: context,
+        message: 'This transaction is already in the CC Reserve',
+      );
       return;
     }
 
@@ -58,7 +63,7 @@ class TransactionsModelView extends ChangeNotifier {
     );
 
     _ccReserveTransactions.add(transaction);
-    
+
     _ccReserve += transaction.amount;
     _variableIncome -= transaction.amount;
 

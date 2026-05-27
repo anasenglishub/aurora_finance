@@ -112,9 +112,10 @@ class _IncomeInputFormState extends State<IncomeInputForm> {
                   return CustomButtonWidget(
                   backgroundColor: AppConfig.primarySwatch[400],
                   width: double.infinity,
-                  onPressed: () async {              
+                  onPressed: () async {
                     bool sendInfo = await _optionDialog(context);
-                    if (sendInfo && mounted) {
+                    if (!mounted) return;
+                    if (sendInfo) {
                       _availableFundModelView.setExpectedIncome(double.parse(_incomeController.text));
                       _availableFundModelView.setTotalFixedBills(double.parse(_billsController.text));
                       _availableFundModelView.addToAvailableFund(double.parse(_incomeController.text) - double.parse(_billsController.text));

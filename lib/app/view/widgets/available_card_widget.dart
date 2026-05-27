@@ -6,14 +6,14 @@ import 'package:aurora_finance/app/view/widgets/UI/custom_button_widget.dart';
 import 'package:aurora_finance/app/model_view/settings/available_fund_model_view.dart';
 
 class AvailableCardWidget extends StatelessWidget {
-  AvailableCardWidget({super.key});
+  const AvailableCardWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ListenableBuilder(
-      listenable: AvailableFundModelView(), 
+      listenable: AvailableFundModelView(),
       builder: (context, child) {
-        final viewModel = AvailableFundModelView();  
+        final viewModel = AvailableFundModelView();
 
         return CardWidget(
           upperBorderColor: AppConfig.primarySwatch[700],
@@ -28,7 +28,7 @@ class AvailableCardWidget extends StatelessWidget {
                   color: AppConfig.neutralSwatch[500],
                 ),
               ),
-      
+
               Text(
                 "R\$${viewModel.availableFund.toStringAsFixed(2)}",
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
@@ -37,12 +37,13 @@ class AvailableCardWidget extends StatelessWidget {
                   fontSize: 32,
                 ),
               ),
-      
+
               CustomButtonWidget(
                 onPressed: () {
                   Navigator.pushNamed(context, '/financial-breakdown');
                 },
                 backgroundColor: AppConfig.primarySwatch[50],
+                width: double.infinity,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   spacing: 8,
@@ -54,14 +55,17 @@ class AvailableCardWidget extends StatelessWidget {
                         color: AppConfig.primarySwatch[700],
                       ),
                     ),
-                    Icon(Icons.chevron_right, color: AppConfig.primarySwatch[700]),
+                    Icon(
+                      Icons.chevron_right,
+                      color: AppConfig.primarySwatch[700],
+                    ),
                   ],
                 ),
               ),
             ],
           ),
         );
-      }
+      },
     );
   }
 }
