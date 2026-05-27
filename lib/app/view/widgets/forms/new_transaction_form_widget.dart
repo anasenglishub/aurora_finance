@@ -11,17 +11,21 @@ import 'package:aurora_finance/app/view/widgets/UI/date_picker_widget.dart';
 import 'package:aurora_finance/app/view/widgets/UI/custom_button_widget.dart';
 import 'package:intl/intl.dart';
 import 'package:aurora_finance/app/shared/utils/dialog_utils.dart';
-  
+
 class NewTransactionFormWidget extends StatefulWidget {
   const NewTransactionFormWidget({super.key});
 
   @override
-  State<NewTransactionFormWidget> createState() => _NewTransactionFormWidgetState();
+  State<NewTransactionFormWidget> createState() =>
+      _NewTransactionFormWidgetState();
 }
 
 class _NewTransactionFormWidgetState extends State<NewTransactionFormWidget> {
   final _transactionFormKey = GlobalKey<FormState>();
-  final List<String> _categories = ['Select a category', ...TransactionCategory.values.map((category) => category.name)];
+  final List<String> _categories = [
+    'Select a category',
+    ...TransactionCategory.values.map((category) => category.name),
+  ];
   DateTime? _selectedDate;
 
   // Controllers
@@ -33,7 +37,10 @@ class _NewTransactionFormWidgetState extends State<NewTransactionFormWidget> {
   final _dateController = TextEditingController();
   final _descriptionController = TextEditingController();
 
-  bool get _isDisabled => _movementType.isEmpty || _amountController.text.isEmpty || _descriptionController.text.isEmpty;
+  bool get _isDisabled =>
+      _movementType.isEmpty ||
+      _amountController.text.isEmpty ||
+      _descriptionController.text.isEmpty;
   late final _isDisabledNotifier = ValueNotifier(_isDisabled);
 
   Future<dynamic> _makeAnotherTransaction() {
@@ -45,13 +52,18 @@ class _NewTransactionFormWidgetState extends State<NewTransactionFormWidget> {
       cancelLabel: 'No',
     );
   }
-  
+
   Transaction _buildTransaction() {
+    String amountText = _amountController.text.trim().replaceAll(',', '.');
+    double amountDouble = double.parse(amountText);
+
     return Transaction(
-      amount: double.parse(_amountController.text),
+      amount: amountDouble,
       description: _descriptionController.text,
       date: _selectedDate!,
-      category: TransactionCategory.other,
+      category: TransactionCategory.values.firstWhere(
+        (category) => category.name == _category,
+      ),
       movementType: _movementType,
     );
   }
@@ -75,9 +87,10 @@ class _NewTransactionFormWidgetState extends State<NewTransactionFormWidget> {
 
   void _saveTransaction(BuildContext context) {
     final transaction = _buildTransaction();
-    switch(_movementType) {
+    switch (_movementType) {
       case 'income':
         TransactionsModelView().addIncomeTransaction(transaction);
+        print(transaction);
         break;
       case 'expense':
         TransactionsModelView().addExpenseTransaction(transaction);
@@ -92,11 +105,12 @@ class _NewTransactionFormWidgetState extends State<NewTransactionFormWidget> {
     void updateDisabled() {
       _isDisabledNotifier.value = _isDisabled;
     }
+
     _amountController.addListener(updateDisabled);
     _dateController.addListener(updateDisabled);
     _descriptionController.addListener(updateDisabled);
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return ListenableBuilder(
@@ -118,9 +132,8 @@ class _NewTransactionFormWidgetState extends State<NewTransactionFormWidget> {
                         children: [
                           Text(
                             'Amount (R\$)'.toUpperCase(),
-                            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                              fontWeight: FontWeight.bold,
-                            ),
+                            style: Theme.of(context).textTheme.titleSmall
+                                ?.copyWith(fontWeight: FontWeight.bold),
                           ),
                           CustomInputWidget(
                             hintText: '0,00',
@@ -148,10 +161,7 @@ class _NewTransactionFormWidgetState extends State<NewTransactionFormWidget> {
                             value: 'expense',
                             label: Text('Expense'),
                           ),
-                          ButtonSegment(
-                            value: 'income',
-                            label: Text('Income'),
-                          ),
+                          ButtonSegment(value: 'income', label: Text('Income')),
                         ],
                         selected: {_movementType},
                         onSelectionChanged: (Set<String> selection) {
@@ -181,10 +191,15 @@ class _NewTransactionFormWidgetState extends State<NewTransactionFormWidget> {
                           });
                         },
                         initialValue: _paymentMethod,
-                        items: ['Select a payment method', 'Credit Card', 'Debit Card', 'Pix'],
+                        items: [
+                          'Select a payment method',
+                          'Credit Card',
+                          'Debit Card',
+                          'Pix',
+                        ],
                         label: 'Payment Method',
                       ),
-              
+
                     MonthPickerInput(
                       format: DatePickerFormat.fullDate,
                       labelText: 'Date',
@@ -193,16 +208,18 @@ class _NewTransactionFormWidgetState extends State<NewTransactionFormWidget> {
                       onDateSelected: (date) {
                         setState(() {
                           _selectedDate = date;
-                          _dateController.text = DateFormat('dd/MM/yyyy').format(date);
+                          _dateController.text = DateFormat(
+                            'dd/MM/yyyy',
+                          ).format(date);
                         });
                       },
                     ),
-              
+
                     CustomInputWidget(
                       controller: _descriptionController,
                       labelText: 'Description',
                     ),
-                  ], 
+                  ],
                 ),
               ),
             ),
@@ -222,7 +239,8 @@ class _NewTransactionFormWidgetState extends State<NewTransactionFormWidget> {
                       width: MediaQuery.of(context).size.width * 0.58,
                       onPressed: () async {
                         _saveTransaction(context);
-                        bool makeAnotherTransaction = await _makeAnotherTransaction();
+                        bool makeAnotherTransaction =
+                            await _makeAnotherTransaction();
                         if (makeAnotherTransaction) {
                           _clearTransaction();
                         } else {
@@ -234,13 +252,13 @@ class _NewTransactionFormWidgetState extends State<NewTransactionFormWidget> {
                       isDisabled: _isDisabled,
                       child: Text('Save Transaction'),
                     );
-                  }
+                  },
                 ),
               ),
             ),
           ],
         );
-      }
+      },
     );
   }
 }
