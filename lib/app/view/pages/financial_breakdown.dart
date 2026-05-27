@@ -1,4 +1,3 @@
-
 import 'package:aurora_finance/app/view/widgets/UI/custom_app_bar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:aurora_finance/app/shared/utils/app_config.dart';
@@ -15,19 +14,24 @@ class FinancialBreakdownPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppConfig.backgroundColor,
       appBar: CustomAppBarWidget(
-        title: 'Financial Breakdown', 
+        title: 'Financial Breakdown',
         icon: Icons.calendar_month,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          spacing: 16,
-          children: [
-            IncomeCard(),
-            FixedBillsCard(),
-            CCreserveCard(),
-            SpendingCard(),
-          ],
+        child: ListView.builder(
+          itemCount: 1,
+          itemBuilder: (context, index) {
+            return Column(
+              spacing: 16,
+              children: [
+                IncomeCard(),
+                FixedBillsCard(),
+                CCreserveCard(),
+                SpendingCard(),
+              ],
+            );
+          },
         ),
       ),
     );
